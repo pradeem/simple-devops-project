@@ -10,7 +10,10 @@ pipeline {
 
     stage('Terraform Apply') {
       when {
-        changeset patterns: ["**/Jenkinsfile", "terraform/**"]
+        anyOf {
+          changeset pattern: '**/Jenkinsfile'
+          changeset pattern: 'terraform/**'
+        }
       }
       steps {
         withCredentials([usernamePassword(credentialsId: 'aws-creds', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY')]) {
