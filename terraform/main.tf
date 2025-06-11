@@ -29,8 +29,8 @@ resource "aws_security_group" "web_sg" {
 }
 
 resource "aws_instance" "web" {
-  ami           = "ami-0731becbf832f281e"
-  instance_type = "t2.micro"
+  ami           = "ami-05d3e0186c058c4dd"
+  instance_type = "t3.micro"
   security_groups = [aws_security_group.web_sg.name]
 
   user_data = file("${path.module}/../user_data.sh")
